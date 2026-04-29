@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+import type { Locale } from '../../data/site';
+import { about, defaultLocale, isLocale, locales } from '../../data/site';
+
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+if (!isLocale(lang)) {
+  return Astro.redirect(`/${defaultLocale}/`);
+}
+
+const locale = lang as Locale;
+---
+
+<BaseLayout locale={locale} title={`Andrea — ${about[locale].title}`} description={about[locale].description}>
+  <section class="hero" style="padding-bottom: 18px;">
+    <SectionTitle title={about[locale].title} />
+    <div class="panel" style="padding:24px;">
+      <p style="margin:0; color: var(--muted); line-height:1.8;">
+        {about[locale].description}
+      </p>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,41 @@
+<button class="control" type="button" data-theme-toggle aria-label="Toggle light and dark mode">
+  <span data-theme-icon>◐</span>
+  <span>Theme</span>
+</button>
+
+<style>
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+  .spinning {
+    display: inline-block;
+    animation: spin 0.4s ease-out;
+  }
+</style>
+
+<script>
+  const root   = document.documentElement;
+  const button = document.querySelector('[data-theme-toggle]');
+  const icon   = document.querySelector('[data-theme-icon]');
+
+  function syncIcon() {
+    if (icon) icon.textContent = root.dataset.theme === 'dark' ? '☾' : '☀';
+  }
+
+  syncIcon();
+
+  button?.addEventListener('click', () => {
+    const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    root.dataset.theme = next;
+    localStorage.setItem('theme', next);
+    syncIcon();
+
+    // spin sull'icona
+    if (icon) {
+      icon.classList.remove('spinning');
+      void (icon as HTMLElement).offsetWidth; // forza reflow per ripartire da capo
+      icon.classList.add('spinning');
+    }
+  });
+</script>

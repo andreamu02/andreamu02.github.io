@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import type { Locale } from '../../data/site';
+import { defaultLocale, isLocale, locales, projects } from '../../data/site';
+
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+if (!isLocale(lang)) {
+  return Astro.redirect(`/${defaultLocale}/`);
+}
+
+const locale = lang as Locale;
+const title = locale === 'it' ? 'Progetti' : 'Projects';
+---
+
+<BaseLayout locale={locale} title={`Andrea — ${title}`} description={title}>
+  <section class="hero" style="padding-bottom: 18px;">
+    <SectionTitle title={title} />
+    <div class="grid-2">
+      {projects[locale].map((project) => (
+        <ProjectCard title={project.title} description={project.description} tags={project.tags} />
+      ))}
+    </div>
+  </section>
+</BaseLayout>

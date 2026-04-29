@@ -1,0 +1,21 @@
+# Dipendenze
+node_modules/
+
+# Build output
+dist/
+
+# Cache Astro
+.astro/
+
+# Variabili d'ambiente (se le usi)
+.env
+.env.local
+.env.production
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/

@@ -1,0 +1,37 @@
+---
+import '../styles/global.css';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import type { Locale } from '../data/site';
+
+const {
+  title = 'Andrea — Portfolio',
+  description = 'Simple Portfolio',
+  locale = 'it'
+} = Astro.props as { title?: string; description?: string; locale?: Locale };
+---
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0f172a" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate icon" href="/favicon.svg" />
+    <title>{title}</title>
+    <script is:inline>
+      const saved = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.dataset.theme = saved ?? (prefersDark ? 'dark' : 'light');
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <SiteHeader locale={locale} />
+    <main id="content" class="container">
+      <slot />
+    </main>
+    <SiteFooter />
+  </body>
+</html>

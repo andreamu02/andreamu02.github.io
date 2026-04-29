@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import SkillPill from '../../components/SkillPill.astro';
+import type { Locale } from '../../data/site';
+import { about, contact, defaultLocale, home, isLocale, locales, projects, skills } from '../../data/site';
+
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+if (!isLocale(lang)) {
+  return Astro.redirect(`/${defaultLocale}/`);
+}
+
+const locale = lang as Locale;
+---
+
+<BaseLayout locale={locale} title={locale === 'it' ? 'Andrea — Portfolio' : 'Andrea — Portfolio'} description={about[locale].description}>
+  <Hero locale={locale} data={home[locale]} />
+
+  <section>
+    <SectionTitle title={about[locale].title} />
+    <div class="panel" style="padding:24px;">
+      <p style="margin:0; color: var(--muted); line-height:1.8;">
+        {about[locale].description}
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <SectionTitle title={contact[locale].title} subtitle={contact[locale].subtitle} />
+    <div class="panel contact">
+      <div><strong>Email:</strong> <a href={`mailto:${contact[locale].email}`}>{contact[locale].email}</a></div>
+      <div><strong>GitHub:</strong> <a href="https://github.com/andreamu02">{contact[locale].github}</a></div>
+      <div><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/andrea-mutti-5351a5219">{contact[locale].linkedin}</a></div>
+    </div>
+  </section>
+</BaseLayout>

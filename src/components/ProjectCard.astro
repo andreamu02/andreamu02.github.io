@@ -1,0 +1,10 @@
+---
+const { title, description, tags } = Astro.props as { title: string; description: string; tags: string[] };
+---
+<article class="project">
+  <h3>{title}</h3>
+  <p>{description}</p>
+  <div class="tags">
+    {tags.map((tag) => <span class="tag">{tag}</span>)}
+  </div>
+</article>

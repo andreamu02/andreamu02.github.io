@@ -1,0 +1,25 @@
+---
+import type { Locale } from '../data/site';
+import LanguageSwitch from './LanguageSwitch.astro';
+import ThemeToggle from './ThemeToggle.astro';
+import { nav } from '../data/site';
+
+const { locale } = Astro.props as { locale: Locale };
+---
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href={`/${locale}/`}>Andrea</a>
+
+    <nav class="menu" aria-label="Main navigation">
+      {nav[locale].map((item) => (
+        <a href={item.href}>{item.label}</a>
+      ))}
+    </nav>
+
+    <div class="controls">
+      <LanguageSwitch locale={locale} />
+      <ThemeToggle />
+    </div>
+  </div>
+</header>

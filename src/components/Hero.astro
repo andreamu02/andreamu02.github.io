@@ -1,0 +1,47 @@
+---
+import type { Locale } from '../data/site';
+const { locale, data } = Astro.props as {
+  locale: Locale;
+  data: {
+    eyebrow: string;
+    title: string[];
+    lead: string;
+    primaryCta: { href: string; label: string };
+    secondaryCta: { href: string; label: string };
+    sidebar: { title: string; body: string }[];
+    stats: { value: string; label: string }[];
+  };
+};
+---
+
+<section class="hero">
+  <div class="hero-grid">
+    <div class="panel hero-main">
+      <div class="eyebrow">{data.eyebrow}</div>
+      <h1>
+        {data.title[0]} <span class="wave">👋</span><br />
+        {data.title[1]} <span class="text-gradient">{data.title[2]}</span>! 
+      </h1>
+      <p class="lead">{data.lead}</p>
+      <div class="actions">
+        <a class="btn primary" href={data.primaryCta.href}>{data.primaryCta.label}</a>
+        <a class="btn" href={data.secondaryCta.href}>{data.secondaryCta.label}</a>
+      </div>
+    </div>
+
+    <aside class="panel hero-side">
+      {data.sidebar.map((item) => (
+        <div class="mini-card">
+          <h3>{item.title}</h3>
+          <p>{item.body}</p>
+        </div>
+      ))}
+
+      <div class="stats">
+        {data.stats.map((stat) => (
+          <div class="stat"><strong>{stat.value}</strong><span>{stat.label}</span></div>
+        ))}
+      </div>
+    </aside>
+  </div>
+</section>

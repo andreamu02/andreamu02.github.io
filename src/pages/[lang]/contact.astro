@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionTitle from '../../components/SectionTitle.astro';
+import type { Locale } from '../../data/site';
+import { contact, defaultLocale, isLocale, locales } from '../../data/site';
+
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+if (!isLocale(lang)) {
+  return Astro.redirect(`/${defaultLocale}/`);
+}
+
+const locale = lang as Locale;
+---
+
+<BaseLayout locale={locale} title={`Andrea — ${contact[locale].title}`} description={contact[locale].subtitle}>
+  <section class="hero" style="padding-bottom: 18px;">
+    <SectionTitle title={contact[locale].title} subtitle={contact[locale].subtitle} />
+    <div class="panel contact">
+      <div><strong>Email:</strong> <a href={`mailto:${contact[locale].email}`}>{contact[locale].email}</a></div>
+      <div><strong>GitHub:</strong> <a href="https://github.com/andreamu02">{contact[locale].github}</a></div>
+      <div><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/andrea-mutti-5351a5219">{contact[locale].linkedin}</a></div>
+    </div>
+  </section>
+</BaseLayout>

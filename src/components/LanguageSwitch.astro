@@ -1,0 +1,12 @@
+---
+import type { Locale } from '../data/site';
+import { otherLocale, swapLocale } from '../utils/i18n';
+
+const { locale } = Astro.props as { locale: Locale };
+const target = otherLocale(locale);
+const href = swapLocale(Astro.url.pathname, target);
+---
+
+<a class="control" href={href} aria-label={`Switch language to ${target.toUpperCase()}`}>
+  {target.toUpperCase()}
+</a>
