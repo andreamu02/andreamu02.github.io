@@ -23,7 +23,7 @@ export const home = {
     eyebrow: 'My Simple Portfolio',
     title: ['Ciao', 'sono', 'Andrea'],
     lead:
-      'Sono laureando magistrale in Cybersecurity con una forte passione per la sicurezza informatica in diversi ambiti, tra cui red team, penetration testing e security engineering. Mi interessano anche settori più di nicchia, come l’automotive security. Qui trovi una sintesi di chi sono, cosa faccio e alcuni progetti che rappresentano il mio percorso.',
+      'Sono laureando magistrale in Cybersecurity, con focus su offensive security e penetration testing e un interesse marcato per la sicurezza di sistemi embedded e automotive — l’ambito dei miei progetti più recenti. Punto a crescere verso ruoli tecnici offensivi (red teaming) e di ricerca. Qui trovi una sintesi di chi sono, cosa faccio e i progetti che rappresentano il mio percorso.',
     primaryCta: { href: '/it/projects/', label: 'Guarda i progetti' },
     secondaryCta: { href: 'mailto:muttiandrea@protonmail.com', label: 'Scrivimi' },
     sidebar: [
@@ -36,18 +36,13 @@ export const home = {
         title: 'Disponibile per',
         body: 'Lavoro, stage, collaborazioni o contatti professionali.'
       }
-    ],
-    stats: [
-      { value: '3+', label: 'Progetti' },
-      { value: '2', label: 'Lingue' },
-      { value: '1', label: 'Obiettivo' }
     ]
   },
   en: {
     eyebrow: 'My Simple Portfolio',
     title: ['Hi', "I'm", 'Andrea'],
     lead:
-      'I am a master’s student in Cybersecurity with a strong passion for information security across several areas, including red team, penetration testing, and security engineering. I’m also interested in more niche domains such as automotive security. Here you will find a short overview of who I am, what I do, and a few projects that represent my path.',
+      'I’m a master’s student in Cybersecurity focused on offensive security and penetration testing, with a strong interest in embedded and automotive security — the area of my most recent projects. My goal is to grow into technical offensive (red teaming) and research roles. Here you’ll find a short overview of who I am, what I do, and the projects that represent my path.',
     primaryCta: { href: '/en/projects/', label: 'View projects' },
     secondaryCta: { href: 'mailto:muttiandrea@protonmail.com', label: 'Write to me' },
     sidebar: [
@@ -60,11 +55,6 @@ export const home = {
         title: 'Available for',
         body: 'Work, internships, collaborations, or professional contact.'
       }
-    ],
-    stats: [
-      { value: '3+', label: 'Projects' },
-      { value: '2', label: 'Languages' },
-      { value: '1', label: 'Goal' }
     ]
   }
 } satisfies Record<Locale, {
@@ -74,7 +64,6 @@ export const home = {
   primaryCta: { href: string; label: string };
   secondaryCta: { href: string; label: string };
   sidebar: { title: string; body: string }[];
-  stats: { value: string; label: string }[];
 }>;
 
 export const about = {
@@ -93,53 +82,41 @@ export const about = {
 export const projects = {
   it: [
     {
-      title: 'Progetto 1',
-      description: 'Descrivi il progetto in una frase: obiettivo, tecnologia usata e risultato finale.',
-      tags: ['HTML', 'CSS', 'JavaScript']
+      title: 'Scan-Then-Strike — Attacco Bus-Off su CAN Bus',
+      description:
+        'Riproduzione del core timing-critical dell’attacco Scan-Then-Strike (USENIX Security ’21): primitiva Single Frame Bus-Off (SFBO) ed escalation a Persistent Bus-Off DoS. Testbed a 3 nodi ESP32-C3 su CAN bus a 500 kbps con orchestratore/logger Linux via SocketCAN. ~83% di bus-off al primo colpo, ~78% di soppressione sostenuta della vittima.',
+      tags: ['CAN Bus', 'Automotive Security', 'ESP32-C3', 'C / C++', 'Embedded'],
+      repo: 'https://github.com/andreamu02/Scan-Then-Strike'
     },
     {
-      title: 'Progetto 2',
-      description: 'Inserisci un secondo progetto, anche piccolo: una landing page, un’app o un layout.',
-      tags: ['React', 'UI', 'Responsive']
-    },
-    {
-      title: 'Progetto 3',
-      description: 'Puoi aggiungere un progetto personale, universitario o un esperimento creativo.',
-      tags: ['Portfolio', 'GitHub Pages', 'Design']
-    },
-    {
-      title: 'Progetto 4',
-      description: 'Se vuoi, sostituisci questo blocco con un link a un case study o a un PDF.',
-      tags: ['Studio', 'Branding', 'Mockup']
+      title: 'Remote Attestation — Protocollo SIMPLE',
+      description:
+        'Workflow di remote attestation challenge–response autenticato (SIMPLE, WiSec ’20) su verifier PC (Python), gateway ESP32 (ESP-IDF) e prover STM32 Nucleo-H503RB. Misurazione SHA-256/HMAC di flash, RAM e configurazione isolata con MPU e GTZC e protetta da MAC e freshness. Tamper detection validata, replay rifiutati, path crypto privilegiato ~0.93 ms.',
+      tags: ['Remote Attestation', 'STM32', 'ESP32', 'Python', 'IoT Security'],
+      repo: 'https://github.com/andreamu02/Remote_Attestation_SIMPLE'
     }
   ],
   en: [
     {
-      title: 'Project 1',
-      description: 'Describe the project in one sentence: goal, tech used, and final result.',
-      tags: ['HTML', 'CSS', 'JavaScript']
+      title: 'Scan-Then-Strike — CAN Bus Bus-Off Attack',
+      description:
+        'Reproduced the timing-critical core of the Scan-Then-Strike CAN attack (USENIX Security ’21): the Single Frame Bus-Off (SFBO) primitive and its escalation into a Persistent Bus-Off DoS. 3-node ESP32-C3 testbed on a 500 kbps CAN bus with a Linux orchestrator/logger over SocketCAN. ~83% single-shot bus-off, ~78% sustained victim suppression.',
+      tags: ['CAN Bus', 'Automotive Security', 'ESP32-C3', 'C / C++', 'Embedded'],
+      repo: 'https://github.com/andreamu02/Scan-Then-Strike'
     },
     {
-      title: 'Project 2',
-      description: 'Add a second project, even a small one: a landing page, app, or layout.',
-      tags: ['React', 'UI', 'Responsive']
-    },
-    {
-      title: 'Project 3',
-      description: 'You can include a personal project, university work, or a creative experiment.',
-      tags: ['Portfolio', 'GitHub Pages', 'Design']
-    },
-    {
-      title: 'Project 4',
-      description: 'If you prefer, replace this block with a case study or a PDF link.',
-      tags: ['Study', 'Branding', 'Mockup']
+      title: 'Remote Attestation — SIMPLE Protocol',
+      description:
+        'Authenticated challenge–response remote attestation workflow (SIMPLE, WiSec ’20) across a PC verifier (Python), an ESP32 gateway (ESP-IDF) and an STM32 Nucleo-H503RB prover. SHA-256/HMAC measurement of flash, RAM and configuration isolated by MPU and GTZC and protected by MAC and freshness checks. Validated tamper detection, replay rejection, ~0.93 ms privileged crypto path.',
+      tags: ['Remote Attestation', 'STM32', 'ESP32', 'Python', 'IoT Security'],
+      repo: 'https://github.com/andreamu02/Remote_Attestation_SIMPLE'
     }
   ]
-} satisfies Record<Locale, { title: string; description: string; tags: string[] }[]>;
+} satisfies Record<Locale, { title: string; description: string; tags: string[]; repo?: string }[]>;
 
 export const skills = {
-  it: ['HTML5', 'CSS3', 'JavaScript', 'GitHub', 'Figma', 'Responsive Design'],
-  en: ['HTML5', 'CSS3', 'JavaScript', 'GitHub', 'Figma', 'Responsive Design']
+  it: ['Penetration Testing', 'Vulnerability Assessment', 'Network Security', 'CAN Bus / Automotive', 'Embedded (C/C++, Rust)', 'Python', 'Linux', 'Docker', 'Burp Suite', 'Wireshark', 'Nmap'],
+  en: ['Penetration Testing', 'Vulnerability Assessment', 'Network Security', 'CAN Bus / Automotive', 'Embedded (C/C++, Rust)', 'Python', 'Linux', 'Docker', 'Burp Suite', 'Wireshark', 'Nmap']
 } satisfies Record<Locale, string[]>;
 
 export const contact = {
@@ -160,7 +137,6 @@ export const contact = {
 } satisfies Record<Locale, { title: string; subtitle: string; email: string; github: string; linkedin: string }>;
 
 
-// Add this at the very bottom of src/data/site.ts
 export function isLocale(lang: string | undefined): lang is Locale {
   return locales.includes(lang as any);
 }

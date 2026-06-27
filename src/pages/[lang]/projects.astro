@@ -23,7 +23,7 @@ const title = locale === 'it' ? 'Progetti' : 'Projects';
     <SectionTitle title={title} />
     <div class="grid-2">
       {projects[locale].map((project) => (
-        <ProjectCard title={project.title} description={project.description} tags={project.tags} />
+        <ProjectCard title={project.title} description={project.description} tags={project.tags} repo={project.repo} />
       ))}
     </div>
   </section>

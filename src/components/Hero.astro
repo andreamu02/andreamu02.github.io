@@ -9,7 +9,6 @@ const { locale, data } = Astro.props as {
     primaryCta: { href: string; label: string };
     secondaryCta: { href: string; label: string };
     sidebar: { title: string; body: string }[];
-    stats: { value: string; label: string }[];
   };
 };
 ---
@@ -36,12 +35,6 @@ const { locale, data } = Astro.props as {
           <p>{item.body}</p>
         </div>
       ))}
-
-      <div class="stats">
-        {data.stats.map((stat) => (
-          <div class="stat"><strong>{stat.value}</strong><span>{stat.label}</span></div>
-        ))}
-      </div>
     </aside>
   </div>
 </section>
