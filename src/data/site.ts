@@ -91,6 +91,13 @@ export const projects = {
       repo: 'https://github.com/andreamu02/Scan-Then-Strike'
     },
     {
+      title: 'BMS LV — Battery Management System in Rust (RaceUP)',
+      description:
+        'Firmware del BMS a bassa tensione della vettura Formula SAE RaceUP, riscritto da zero in Rust su framework async Embassy (no_std). Lettura di tensioni di cella e temperature da un LTC6811 via SPI con DMA, fault detection su sovra/sotto-tensione e temperatura con debounce, balancing passivo e telemetria su CAN a 500 kbps. Architettura a task concorrenti su STM32F405, logging via USB-CDC e defmt.',
+      tags: ['Rust', 'Embassy', 'STM32', 'LTC6811', 'CAN Bus', 'Embedded'],
+      repo: 'https://github.com/andreamu02/BMS_Rust_RaceUP'
+    },
+    {
       title: 'Remote Attestation — Protocollo SIMPLE',
       description:
         'Workflow di remote attestation challenge–response autenticato (SIMPLE, WiSec ’20) su verifier PC (Python), gateway ESP32 (ESP-IDF) e prover STM32 Nucleo-H503RB. Misurazione SHA-256/HMAC di flash, RAM e configurazione isolata con MPU e GTZC e protetta da MAC e freshness. Tamper detection validata, replay rifiutati, path crypto privilegiato ~0.93 ms.',
@@ -105,6 +112,13 @@ export const projects = {
         'Reproduced the timing-critical core of the Scan-Then-Strike CAN attack (USENIX Security ’21): the Single Frame Bus-Off (SFBO) primitive and its escalation into a Persistent Bus-Off DoS. 3-node ESP32-C3 testbed on a 500 kbps CAN bus with a Linux orchestrator/logger over SocketCAN. ~83% single-shot bus-off, ~78% sustained victim suppression.',
       tags: ['CAN Bus', 'Automotive Security', 'ESP32-C3', 'C / C++', 'Embedded'],
       repo: 'https://github.com/andreamu02/Scan-Then-Strike'
+    },
+    {
+      title: 'BMS LV — Battery Management System in Rust (RaceUP)',
+      description:
+        'Low-voltage Battery Management System firmware for the RaceUP Formula SAE car, rewritten from scratch in Rust on the Embassy async framework (no_std). Reads per-cell voltages and temperatures from an LTC6811 over SPI with DMA, runs over/under-voltage and temperature fault detection with debouncing, passive balancing and CAN telemetry at 500 kbps. Concurrent task architecture on STM32F405, logging over USB-CDC and defmt.',
+      tags: ['Rust', 'Embassy', 'STM32', 'LTC6811', 'CAN Bus', 'Embedded'],
+      repo: 'https://github.com/andreamu02/BMS_Rust_RaceUP'
     },
     {
       title: 'Remote Attestation — SIMPLE Protocol',
