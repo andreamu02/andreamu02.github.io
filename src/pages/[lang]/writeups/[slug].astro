@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import type { Locale } from '../../../data/site';
+import { defaultLocale, isLocale, locales } from '../../../data/site';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('writeups', ({ data }) => !data.draft);
+  return locales.flatMap((lang) =>
+    entries.map((entry) => ({
+      params: { lang, slug: entry.id },
+      props: { entry },
+    }))
+  );
+}
+
+const { lang } = Astro.params;
+if (!isLocale(lang)) {
+  return Astro.redirect(`/${defaultLocale}/`);
+}
+const locale = lang as Locale;
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<BaseLayout locale={locale} title={`Andrea — ${entry.data.title}`} description={entry.data.summary}>
+  <section class="hero" style="padding-bottom: 18px;">
+    <article class="writeup">
+      <h1>{entry.data.title}</h1>
+      <p class="writeup-meta">
+        <time datetime={entry.data.date.toISOString()}>{entry.data.date.toISOString().slice(0, 10)}</time>
+        {entry.data.tags.length > 0 && <span>&nbsp;·&nbsp;{entry.data.tags.join(', ')}</span>}
+      </p>
+      <Content />
+      <p class="writeup-back">
+        <a href={`/${locale}/writeups/`}>&larr; {locale === 'it' ? 'Tutti i writeup' : 'All writeups'}</a>
+      </p>
+    </article>
+  </section>
+</BaseLayout>

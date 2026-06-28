@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SectionTitle from '../../../components/SectionTitle.astro';
+import type { Locale } from '../../../data/site';
+import { defaultLocale, isLocale, locales } from '../../../data/site';
+import { getCollection } from 'astro:content';
+
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+if (!isLocale(lang)) {
+  return Astro.redirect(`/${defaultLocale}/`);
+}
+const locale = lang as Locale;
+const title = 'Writeups';
+
+const entries = (await getCollection('writeups', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<BaseLayout locale={locale} title={`Andrea — ${title}`} description={title}>
+  <section class="hero" style="padding-bottom: 18px;">
+    <SectionTitle title={title} />
+    <div class="writeup-list">
+      {entries.length === 0 && (
+        <p style="color: var(--muted);">
+          {locale === 'it' ? 'Nessun writeup ancora.' : 'No writeups yet.'}
+        </p>
+      )}
+      {entries.map((entry) => (
+        <a class="writeup-item" href={`/${locale}/writeups/${entry.id}/`}>
+          <h3>{entry.data.title}</h3>
+          <p class="writeup-meta">
+            <time datetime={entry.data.date.toISOString()}>{entry.data.date.toISOString().slice(0, 10)}</time>
+            {entry.data.tags.length > 0 && <span>&nbsp;·&nbsp;{entry.data.tags.join(', ')}</span>}
+          </p>
+          <p>{entry.data.summary}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

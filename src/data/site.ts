@@ -8,12 +8,14 @@ export const nav = {
     { href: '/it/', label: 'Home' },
     { href: '/it/about/', label: 'About' },
     { href: '/it/projects/', label: 'Progetti' },
+    { href: '/it/writeups/', label: 'Writeups' },
     { href: '/it/contact/', label: 'Contatti' }
   ],
   en: [
     { href: '/en/', label: 'Home' },
     { href: '/en/about/', label: 'About' },
     { href: '/en/projects/', label: 'Projects' },
+    { href: '/en/writeups/', label: 'Writeups' },
     { href: '/en/contact/', label: 'Contact' }
   ]
 } satisfies Record<Locale, { href: string; label: string }[]>;

@@ -6,7 +6,10 @@
     "node": ">=22.12.0"
   },
   "scripts": {
+    "fetch:writeups": "node scripts/fetch-writeups.mjs",
+    "predev": "npm run fetch:writeups",
     "dev": "astro dev",
+    "prebuild": "npm run fetch:writeups",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"

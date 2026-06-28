@@ -4,6 +4,8 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  repository_dispatch:
+    types: [writeups-updated]
 
 permissions:
   contents: read
@@ -16,7 +18,8 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v5
-
+      - name: Fetch writeups content (separate repo)
+        run: git clone --depth 1 https://github.com/andreamu02/writeups.git src/content/writeups
       - name: Install, build, and upload your site output
         uses: withastro/action@v5
 
